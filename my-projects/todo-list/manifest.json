@@ -6,7 +6,7 @@
   "display": "standalone",
   "orientation": "portrait",
   "scope": "/",
-  "start_url": "/.",
+  "start_url": "https://ae95caba.github.io/ae95caba/my-projects/todo-list/",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",
