@@ -1,0 +1,278 @@
+body {
+  background-color: skyblue;
+  display: flex;
+  flex-direction: column;
+
+  min-height: 100vh;
+  justify-content: center;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0px;
+}
+
+#axis-button {
+  height: 2rem;
+  margin-top: 2rem;
+  font-size: 1.3rem;
+  border-radius: 5px;
+  box-shadow: 0px 9px 0px;
+}
+
+#axis-button:active {
+  transform: translateY(6px);
+  box-shadow: 0px 3px 0px;
+}
+
+.column,
+.cell {
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  width: 7.4vw;
+  height: 7.4vw;
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.column {
+  position: relative;
+}
+#logo {
+  width: 90vw;
+  animation-iteration-count: infinite;
+  animation-duration: 3s;
+  animation-name: float;
+  animation-direction: alternate;
+}
+
+.container {
+  height: 4rem;
+  overflow: hidden;
+}
+@keyframes float {
+  from {
+    transform: translateY(0.5rem);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
+
+#content {
+  align-self: center;
+
+  display: grid;
+}
+
+#instructions {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  text-align: center;
+  font-weight: bolder;
+  text-shadow: 3px 3px 3px grey;
+}
+
+#player-board-container,
+#computer-board-container {
+  display: grid;
+  grid-template-rows: min-content min-content min-content;
+  grid-template-columns: min-content min-content min-content;
+  justify-self: center;
+}
+#computer-board-container {
+  display: none;
+}
+
+.message {
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -40%);
+  font-size: 3rem;
+  color: white;
+  text-shadow: 3px 3px 3px black;
+  font-weight: bolder;
+}
+
+.ship.vertical {
+  /* 4vh change it if change cells dimentions */
+  transform: rotate(90deg) translateY(-4vh) !important;
+  transform-origin: top left;
+}
+
+.cell-container {
+  background-color: black;
+  color: skyblue;
+  font-weight: bolder;
+  font-size: 1rem;
+  width: fit-content;
+  height: fit-content;
+}
+
+.row {
+  display: flex;
+}
+
+.top {
+  grid-row: 1/2;
+  grid-column: 2/3;
+  display: flex;
+  align-self: flex-end;
+
+  border-right: 1px solid black;
+}
+
+.middle {
+  display: flex;
+
+  justify-self: center;
+}
+
+.left {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  border-bottom: 1px solid black;
+}
+
+.bottom {
+  grid-column: 2/3;
+  grid-row: 3/4;
+  display: flex;
+  align-self: flex-start;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.right {
+  grid-column: 3/4;
+  grid-row: 2/3;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.board {
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+
+#patrol-boat {
+  width: 200%;
+  height: 100%;
+}
+
+.ship {
+  position: relative;
+  pointer-events: none;
+}
+
+#submarine {
+  width: 300%;
+  height: 100%;
+}
+#destroyer {
+  width: 300%;
+  height: 100%;
+}
+
+#battleship {
+  width: 400%;
+  height: 100%;
+}
+
+#carrier {
+  width: 500%;
+  height: 100%;
+}
+
+.shot-marker {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+}
+.hitted .shot-marker {
+  filter: invert(16%) sepia(70%) saturate(4930%) hue-rotate(360deg)
+    brightness(106%) contrast(133%);
+}
+
+.missed .shot-marker {
+  filter: invert(48%) sepia(0%) saturate(2476%) hue-rotate(86deg)
+    brightness(118%) contrast(119%);
+}
+
+#player-board-container .shot-marker {
+  animation-duration: 0.5s;
+  animation-name: shoot;
+  animation-iteration-count: 1;
+}
+@keyframes shoot {
+  from {
+    width: 1px;
+    opacity: 0.1s;
+    transform: translateY(400px);
+    filter: invert(0%) sepia(6%) saturate(7500%) hue-rotate(328deg)
+      brightness(94%) contrast(106%);
+  }
+  to {
+    opacity: 1;
+    filter: invert(0%) sepia(6%) saturate(7500%) hue-rotate(328deg)
+      brightness(94%) contrast(106%);
+  }
+}
+
+#computer-board-container .shot-marker {
+  animation-duration: 0.5s;
+  animation-name: shoot2;
+  animation-iteration-count: 1;
+}
+@keyframes shoot2 {
+  from {
+    width: 1px;
+    opacity: 0.1s;
+    transform: translateY(-400px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .column,
+  .cell {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+  body {
+    min-height: 100vh;
+  }
+
+  #content {
+    max-width: 100vw;
+    min-height: fit-content;
+  }
+
+  #logo {
+    width: 20rem;
+  }
+
+  /*  #content {
+    transform: rotate(90deg);
+  }
+  .cell,
+  #playerBoard,
+  #computerBoard,
+  .message {
+    transform: rotate(270deg);
+  } */
+}
